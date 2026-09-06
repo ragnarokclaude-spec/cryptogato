@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>฿TC ⟡ GATOZONE ▚▞ CONVERTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00fff9;
+            --neon-pink: #ff00e6;
+            --neon-magenta: #f0a;
+            --neon-orange: #ff9f1c;
+            --bg-dark: #0a0a14;
+            --purple-deep: #150c28;
+            --card-bg: #110d1f;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            font-family: 'Share Tech Mono', 'Consolas', monospace;
+            color: #e8f6f5;
+            background:
+                linear-gradient(rgba(10, 10, 20, 0.85), rgba(21, 12, 40, 0.85)),
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0, 255, 249, 0.08) 39px, rgba(0, 255, 249, 0.08) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 0, 230, 0.08) 39px, rgba(255, 0, 230, 0.08) 40px),
+                radial-gradient(circle at 15% 20%, #241142, transparent 45%),
+                radial-gradient(circle at 85% 80%, #0e2b3f, transparent 45%),
+                var(--bg-dark);
+        }
+
+        .scanlines {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.22) 0px,
+                rgba(0, 0, 0, 0.22) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            animation: flicker 4s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.4; }
+            94% { opacity: 1; }
+            97% { opacity: 0.6; }
+            98% { opacity: 1; }
+        }
+
+        .cat-bg {
+            position: fixed;
+            z-index: 1;
+            border-radius: 14px;
+            background: rgba(13, 10, 28, 0.55);
+            box-shadow: 0 0 16px var(--neon-cyan), 0 0 36px rgba(0, 255, 249, 0.4);
+            animation: floaty 6s ease-in-out infinite;
+            opacity: 0.95;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            overflow: visible;
+        }
+
+        .cat-bg svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cat-bg:hover {
+            transform: scale(1.25) rotate(0deg) !important;
+            box-shadow: 0 0 24px var(--neon-pink), 0 0 55px rgba(255, 0, 230, 0.6);
+            z-index: 60;
+        }
+
+        .cat-bg .tag {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8px;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+            white-space: nowrap;
+            text-shadow: 0 0 6px var(--neon-cyan);
+            font-family: 'Share Tech Mono', monospace;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 3px 7px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 249, 0.35);
+            opacity: 0.85;
+        }
+
+        .cat-bg .tag .cursor {
+            color: var(--neon-pink);
+            text-shadow: 0 0 6px var(--neon-pink);
+            animation: blink 0.9s steps(2) infinite;
+        }
+
+        .cat-bg:hover .tag {
+            opacity: 1;
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink);
+            border-color: rgba(255, 0, 230, 0.5);
+        }
+
+        .cat-bg .gl-txt {
+            position: absolute;
+            font-size: 7px;
+            font-family: 'Share Tech Mono', monospace;
+            opacity: 0.55;
+            pointer-events: none;
+            text-shadow: 0 0 5px currentColor;
+        }
+
+        .glitch-cat {
+            animation: floaty 6s ease-in-out infinite, glitchy 4.5s infinite;
+        }
+
+        @keyframes glitchy {
+            0%, 88%, 100% {
+                box-shadow: 0 0 16px var(--neon-cyan), 0 0 36px rgba(0, 255, 249, 0.4);
+                filter: none;
+            }
+            89% {
+                box-shadow: 0 0 18px var(--neon-pink), 0 0 60px rgba(255, 0, 230, 0.55);
+                filter: hue-rotate(90deg) brightness(1.2);
+            }
+            91% {
+                box-shadow: 0 0 16px var(--neon-cyan), 0 0 36px rgba(0, 255, 249, 0.4);
+                filter: none;
+            }
+            93% {
+                box-shadow: 0 0 22px #ff4d6d, 0 0 55px rgba(255, 77, 109, 0.5);
+                filter: hue-rotate(-60deg) brightness(1.15);
+            }
+            95% {
+                box-shadow: 0 0 16px var(--neon-cyan), 0 0 36px rgba(0, 255, 249, 0.4);
+                filter: none;
+            }
+        }
+
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+            50% { transform: translateY(-14px) rotate(var(--rot, 0deg)); }
+        }
+
+        .sound-pill {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            z-index: 90;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+            background: rgba(13, 10, 28, 0.88);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 999px;
+            padding: 9px 16px;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(0, 255, 249, 0.4);
+            animation: pillPulse 1.8s ease-in-out infinite;
+            transition: all 0.25s;
+        }
+
+        .sound-pill:hover {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            box-shadow: 0 0 18px rgba(255, 0, 230, 0.55);
+        }
+
+        .sound-pill.on {
+            color: #0a0a14;
+            background: var(--neon-cyan);
+            text-shadow: none;
+            animation: none;
+            box-shadow: 0 0 20px rgba(0, 255, 249, 0.7);
+        }
+
+        .audio-hint {
+            position: fixed;
+            bottom: 74px;
+            right: 18px;
+            z-index: 89;
+            font-size: 0.68rem;
+            color: #7c8499;
+            letter-spacing: 0.5px;
+            text-align: right;
+            max-width: 280px;
+            line-height: 1.5;
+        }
+
+        .audio-hint b {
+            color: var(--neon-cyan);
+        }
+
+        @keyframes pillPulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 249, 0.3); }
+            50% { box-shadow: 0 0 18px rgba(0, 255, 249, 0.65); }
+        }
+
+        .yt-frame {
+            position: fixed;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0.01;
+            pointer-events: none;
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+
+        .yt-frame.active {
+            width: 320px;
+            height: 180px;
+            bottom: 18px;
+            left: 18px;
+            overflow: hidden;
+            opacity: 1;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 0, 230, 0.6);
+            box-shadow: 0 0 20px rgba(255, 0, 230, 0.4), 0 0 60px rgba(0, 255, 249, 0.2);
+            pointer-events: auto;
+            z-index: 80;
+        }
+
+        .app {
+            width: 460px;
+            max-width: 100%;
+            position: relative;
+            z-index: 10;
+            padding: 18px;
+            background: rgba(12, 10, 26, 0.7);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 249, 0.4);
+            box-shadow:
+                0 0 20px rgba(0, 255, 249, 0.25),
+                0 0 60px rgba(255, 0, 230, 0.15),
+                0 25px 80px rgba(0, 0, 0, 0.8);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .logo-icon {
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 249, 0.7)) drop-shadow(0 0 25px rgba(255, 0, 230, 0.4));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 255, 249, 0.7)) drop-shadow(0 0 25px rgba(255, 0, 230, 0.4)); }
+            50%      { filter: drop-shadow(0 0 16px rgba(0, 255, 249, 0.95)) drop-shadow(0 0 40px rgba(255, 0, 230, 0.6)); }
+        }
+
+        .title-wrap {
+            flex: 1;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.45rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(255, 0, 230, 0.3);
+        }
+
+        .sub {
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px var(--neon-cyan);
+            animation: blink 1.2s steps(2) infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
+        }
+
+        .marquee {
+            font-size: 0.7rem;
+            color: rgba(0, 255, 249, 0.85);
+            overflow: hidden;
+            white-space: nowrap;
+            margin-bottom: 14px;
+            border-top: 1px solid rgba(0, 255, 249, 0.25);
+            border-bottom: 1px solid rgba(255, 0, 230, 0.25);
+            padding: 4px 0;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 14s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        .card {
+            background: rgba(17, 13, 31, 0.85);
+            border-radius: 18px;
+            padding: 22px;
+            border: 1px solid rgba(255, 0, 230, 0.35);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 0, 230, 0.15);
+        }
+
+        .asset-select {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .asset-btn {
+            flex: 1;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            border: 2px solid rgba(0, 255, 249, 0.35);
+            border-radius: 10px;
+            background: rgba(13, 10, 28, 0.6);
+            color: var(--neon-cyan);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-shadow: 0 0 6px rgba(0, 255, 249, 0.4);
+        }
+
+        .asset-btn:hover {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+            text-shadow: 0 0 6px rgba(255, 0, 230, 0.6);
+        }
+
+        .asset-btn.active {
+            background: var(--neon-cyan);
+            color: #0a0a14;
+            text-shadow: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 16px rgba(0, 255, 249, 0.6);
+        }
+
+        .rate-box {
+            background: #0d0a1c;
+            border: 1px solid rgba(0, 255, 249, 0.4);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .rate-box:hover {
+            box-shadow: 0 0 18px rgba(0, 255, 249, 0.35);
+        }
+
+        .rate-label {
+            color: var(--neon-cyan);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 6px rgba(0, 255, 249, 0.6);
+        }
+
+        .rate-value {
+            color: var(--neon-orange);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(255, 159, 28, 0.7);
+        }
+
+        .rate-value .cur {
+            color: #7ce0ff;
+            font-size: 0.9rem;
+        }
+
+        .rate-status {
+            margin-top: 6px;
+            font-size: 0.72rem;
+            color: #4caf50;
+            text-align: right;
+            text-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+            color: var(--neon-pink);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 6px rgba(255, 0, 230, 0.5);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: #0d0a1c;
+            border: 2px solid rgba(0, 255, 249, 0.45);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 230, 0.45);
+        }
+
+        .currency-symbol {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            padding: 14px 0 14px 18px;
+            text-shadow: 0 0 10px rgba(0, 255, 249, 0.8);
+        }
+
+        .input-group.usd .currency-symbol {
+            color: #39ff88;
+            text-shadow: 0 0 10px rgba(57, 255, 136, 0.8);
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #e8f6f5;
+            font-size: 1.6rem;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 14px 18px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        input::placeholder {
+            color: #3a3f5c;
+        }
+
+        .quote {
+            text-align: center;
+            color: #8fd4ff;
+            font-size: 0.82rem;
+            margin-top: 6px;
+            text-shadow: 0 0 8px rgba(140, 210, 255, 0.4);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--neon-cyan);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 6px;
+            vertical-align: -2px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .footer {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(0, 255, 249, 0.6);
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px rgba(0, 255, 249, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div id="catLayer"></div>
+
+    <div id="ytFrame" class="yt-frame">
+        <div id="yt-player"></div>
+    </div>
+
+    <button id="soundBtn" class="sound-pill"><span id="soundIcon">♪</span><span id="soundLabel">cargando audio...</span></button>
+    <audio id="song" loop preload="auto" muted></audio>
+    <div class="audio-hint">tu canción: sube el mp3 a la carpeta <b>cancion/</b> con nombre <b>cancion.mp3</b></div>
+
+    <div class="app">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 60 60" width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="logoGlow" x="-40%" y="-40%" width="180%" height="180%">
+                            <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#00fff9" flood-opacity="0.85"/>
+                        </filter>
+                    </defs>
+                    <polygon points="30,3 55,16 55,44 30,57 5,44 5,16" fill="#0d0a1c" stroke="#00fff9" stroke-width="2" filter="url(#logoGlow)"/>
+                    <polygon points="30,12 44,19 44,35 30,42 16,35 16,19" fill="none" stroke="#ff00e6" stroke-width="1.4" filter="url(#logoGlow)" opacity="0.7"/>
+                    <polygon points="30,20 38,24 38,33 30,37 22,33 22,24" fill="none" stroke="#ff9f1c" stroke-width="1.2" filter="url(#logoGlow)" opacity="0.55"/>
+                    <text x="30" y="35" text-anchor="middle" fill="#00fff9" font-family="Orbitron, sans-serif" font-size="17" font-weight="800" filter="url(#logoGlow)">C</text>
+                </svg>
+            </div>
+            <div class="title-wrap">
+                <h1>CRYPTO·GATOZONE</h1>
+                <div class="sub">▚▞ BTC · ETH · USDT · LIVE ▞▚</div>
+            </div>
+        </div>
+
+        <div class="marquee"><span>NEON CATS ▚▞ BTC·ETH·USDT TASA EN VIVO ▚▞ MIAU FOR THE FUTURE ▚▞ HODL THE MEOW ▚▞ USDT ≈ $1 PERO MIAU ES INFINITO ▚▞</span></div>
+
+        <div class="card">
+            <div class="asset-select">
+                <button id="btn-btc" class="asset-btn active" onclick="pickCoin('btc')">฿ BTC</button>
+                <button id="btn-eth" class="asset-btn" onclick="pickCoin('eth')">Ξ ETH</button>
+                <button id="btn-usdt" class="asset-btn" onclick="pickCoin('usdt')">₮ USDT</button>
+            </div>
+
+            <div class="rate-box">
+                <div>
+                    <div class="rate-label">Precio 1 <span id="rateAsset"></span></div>
+                    <div class="rate-value"><span id="rate">--</span> <span class="cur" id="rateCur">USD</span></div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="rate-status" id="rateStatus"><span class="spinner"></span>Sincronizando...</div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="coinInput" id="coinLabel"></label>
+                <div class="input-group">
+                    <span id="coinSymbol" class="currency-symbol"></span>
+                    <input id="coinInput" type="number" step="any" min="0" value="1" placeholder="0.00">
+                </div>
+                <div class="quote" id="coinQuote"></div>
+            </div>
+
+            <div class="field">
+                <label for="usdInput">Dólares (USD)</label>
+                <div class="input-group usd">
+                    <span class="currency-symbol">$</span>
+                    <input id="usdInput" type="number" step="any" min="0" placeholder="0.00">
+                </div>
+                <div class="quote" id="usdQuote"></div>
+            </div>
+        </div>
+
+        <div class="footer">CYBER-GATO INDUSTRIES © 2026 · MIAU</div>
+    </div>
+
+    <script>
+        const catLayer = document.getElementById('catLayer');
+        const CAT_COLORS = ['#00fff9', '#ff00e6', '#ff9f1c', '#39ff88', '#ff4d6d'];
+        const CAT_SPOTS = [
+            { top: '6%', left: '4%', size: 110, rot: -8, delay: '0s' },
+            { top: '12%', right: '6%', size: 100, rot: 10, delay: '1.2s' },
+            { top: '45%', left: '2%', size: 90, rot: 14, delay: '0.6s' },
+            { bottom: '12%', left: '10%', size: 120, rot: -14, delay: '2.1s' },
+            { bottom: '6%', right: '8%', size: 105, rot: 6, delay: '0.9s' },
+            { top: '70%', right: '3%', size: 120, rot: -18, delay: '1.6s' },
+            { top: '38%', right: '14%', size: 84, rot: 20, delay: '2.6s' },
+            { bottom: '28%', left: '6%', size: 88, rot: -22, delay: '1.8s' }
+        ];
+
+        function catSVG(color, id) {
+            const glow = `url(#${id})`;
+            return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="${id}" x="-40%" y="-40%" width="180%" height="180%">
+                        <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="${color}" flood-opacity="0.9"/>
+                    </filter>
+                </defs>
+                <text x="12" y="16" fill="${color}" font-size="6.5" font-family="monospace" opacity="0.55">/etc/miau</text>
+                <text x="70" y="82" fill="${color}" font-size="6.5" font-family="monospace" opacity="0.5">#0110</text>
+                <path d="M58 76 C 86 80, 92 60, 90 36" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" filter="${glow}"/>
+                <ellipse cx="50" cy="82" rx="21" ry="16" fill="#0d0a1c" stroke="${color}" stroke-width="2.5" filter="${glow}"/>
+                <path d="M33 52 Q 31 20, 43 18 L 47 26 L 53 26 L 57 18 Q 69 20, 67 52 Q 66 63, 50 65 Q 34 63, 33 52 Z" fill="#0d0a1c" stroke="${color}" stroke-width="2.5" filter="${glow}"/>
+                <path d="M39 25 Q 38 20, 37 15" stroke="${color}" stroke-width="2.5" stroke-linecap="round" filter="${glow}"/>
+                <path d="M61 25 Q 62 20, 63 15" stroke="${color}" stroke-width="2.5" stroke-linecap="round" filter="${glow}"/>
+                <rect x="33" y="40" width="34" height="7" rx="3.5" fill="${color}" opacity="0.14" stroke="${color}" stroke-width="1.6" filter="${glow}"/>
+                <circle cx="42" cy="43.5" r="2.3" fill="${color}" filter="${glow}"/>
+                <circle cx="58" cy="43.5" r="2.3" fill="${color}" filter="${glow}"/>
+                <rect x="41.3" y="41.6" width="1.4" height="3.6" rx="0.7" fill="#0a0a14"/>
+                <rect x="57.3" y="41.6" width="1.4" height="3.6" rx="0.7" fill="#0a0a14"/>
+                <circle cx="50" cy="54.5" r="1.1" fill="${color}" filter="${glow}"/>
+                <path d="M44 58 Q 50 61, 56 58" fill="none" stroke="${color}" stroke-width="1.4" stroke-linecap="round" filter="${glow}" opacity="0.85"/>
+                <g stroke="${color}" stroke-width="1.4" stroke-linecap="round" filter="${glow}" opacity="0.85">
+                    <line x1="30" y1="52" x2="15" y2="50"/>
+                    <line x1="30" y1="56" x2="15" y2="58"/>
+                    <line x1="70" y1="52" x2="85" y2="50"/>
+                    <line x1="70" y1="56" x2="85" y2="58"/>
+                </g>
+            </svg>`;
+        }
+
+        const HACK_NAMES = ['gh0st', 's1p91', 'an0nym0us', 'd34d_c4t', 'n0b0dy', 'r00t', '0m3n', 'ph4nt0m'];
+
+        function createCat(spot, i) {
+            const color = CAT_COLORS[i % CAT_COLORS.length];
+            const div = document.createElement('div');
+            div.className = 'cat-bg' + (i % 3 === 0 ? ' glitch-cat' : '');
+            div.style.width = spot.size + 'px';
+            div.style.height = spot.size + 'px';
+            div.style.setProperty('--rot', spot.rot + 'deg');
+            div.style.animationDelay = spot.delay;
+            if (spot.top) div.style.top = spot.top;
+            if (spot.left) div.style.left = spot.left;
+            if (spot.bottom) div.style.bottom = spot.bottom;
+            if (spot.right) div.style.right = spot.right;
+            div.innerHTML = catSVG(color, 'catGlow' + i) +
+                `<span class="tag">root@${HACK_NAMES[i]} <span class="cursor">▌</span></span>` +
+                `<span class="gl-txt" style="top:4px;right:2px;color:${color};">0.${String(i + 7).padStart(2, '0')}%</span>`;
+            catLayer.appendChild(div);
+        }
+
+        CAT_SPOTS.forEach(createCat);
+
+        const COINS = {
+            btc:  { id: 'bitcoin',   icon: '฿', label: '฿TC', name: 'Bitcoin',  tag: '฿itcoin' },
+            eth:  { id: 'ethereum',  icon: 'Ξ', label: 'ETH', name: 'Ethereum', tag: 'Ξthereum' },
+            usdt: { id: 'tether',    icon: '₮', label: 'USDT', name: 'Tether',  tag: '₮ether' }
+        };
+
+        const coinInput  = document.getElementById('coinInput');
+        const usdInput   = document.getElementById('usdInput');
+        const rateEl     = document.getElementById('rate');
+        const rateStatus = document.getElementById('rateStatus');
+        const coinQuote  = document.getElementById('coinQuote');
+        const usdQuote   = document.getElementById('usdQuote');
+        const coinLabel  = document.getElementById('coinLabel');
+        const coinSymbol = document.getElementById('coinSymbol');
+        const rateAsset  = document.getElementById('rateAsset');
+
+        let rates = {};
+        let currentCoin = 'btc';
+        let updatingUsd = false;
+
+        function numberFormat(value) {
+            return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+        }
+
+        function formatCrypto(value) {
+            if (value >= 1) {
+                return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value);
+            }
+            const s = String(value).replace(/\.0+$/, '');
+            const decimals = (s.split('.')[1] || '').length;
+            const max = Math.max(6, decimals <= 0 ? 6 : 8);
+            return new Intl.NumberFormat('en-US', { maximumFractionDigits: max }).format(value);
+        }
+
+        function applyCoin() {
+            const c = COINS[currentCoin];
+            coinLabel.textContent = `${c.tag} (${c.label})`;
+            coinSymbol.textContent = c.icon;
+            rateAsset.textContent = c.label;
+            document.querySelectorAll('.asset-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + currentCoin).classList.add('active');
+        }
+
+        function refreshRateDisplay() {
+            const r = rates[currentCoin];
+            if (typeof r === 'number') rateEl.textContent = numberFormat(r);
+        }
+
+        async function fetchRate() {
+            try {
+                rateStatus.innerHTML = '<span class="spinner"></span>Sincronizando...';
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd');
+                if (!res.ok) throw new Error('API error');
+                const data = await res.json();
+                rates = {
+                    btc:  data.bitcoin?.usd,
+                    eth:  data.ethereum?.usd,
+                    usdt: data.tether?.usd
+                };
+                if (typeof rates[currentCoin] !== 'number') throw new Error('Invalid data');
+                refreshRateDisplay();
+                rateStatus.textContent = `✔ SYNC ${new Date().toLocaleTimeString()}`;
+                if (!updatingUsd) updateFromCoin();
+                else updateFromUsd();
+            } catch (e) {
+                rateStatus.textContent = '⚠ ERROR :: retry...';
+                setTimeout(fetchRate, 30000);
+            }
+        }
+
+        function updateFromCoin() {
+            const rate = rates[currentCoin];
+            if (typeof rate !== 'number') return;
+            updatingUsd = true;
+            const coin = parseFloat(coinInput.value);
+            const label = COINS[currentCoin].label;
+            if (isNaN(coin) || coin < 0) {
+                usdInput.value = '';
+                coinQuote.textContent = '';
+                usdQuote.textContent = '';
+            } else {
+                const usd = coin * rate;
+                usdInput.value = usd.toPrecision(12);
+                coinQuote.textContent = `${formatCrypto(coin)} ${label} = $ ${numberFormat(usd)} USD`;
+                usdQuote.textContent = `$ ${numberFormat(usd)} USD = ${formatCrypto(usd / rate)} ${label}`;
+            }
+            updatingUsd = false;
+        }
+
+        function updateFromUsd() {
+            const rate = rates[currentCoin];
+            if (typeof rate !== 'number') return;
+            updatingUsd = true;
+            const usd = parseFloat(usdInput.value);
+            const label = COINS[currentCoin].label;
+            if (isNaN(usd) || usd < 0) {
+                coinInput.value = '';
+                coinQuote.textContent = '';
+                usdQuote.textContent = '';
+            } else {
+                const coin = usd / rate;
+                coinInput.value = coin.toPrecision(12);
+                coinQuote.textContent = `${formatCrypto(coin)} ${label} = $ ${numberFormat(usd)} USD`;
+                usdQuote.textContent = `$ ${numberFormat(usd)} USD = ${formatCrypto(coin)} ${label}`;
+            }
+            updatingUsd = false;
+        }
+
+        function pickCoin(key) {
+            if (!COINS[key] || key === currentCoin) return;
+            currentCoin = key;
+            applyCoin();
+            refreshRateDisplay();
+            if (!updatingUsd) updateFromCoin();
+            else updateFromUsd();
+        }
+
+        coinInput.addEventListener('input', () => { if (!updatingUsd) updateFromCoin(); });
+        usdInput.addEventListener('input', () => { if (!updatingUsd) updateFromUsd(); });
+
+        applyCoin();
+        setInterval(fetchRate, 10000);
+        fetchRate();
+
+        const soundBtn = document.getElementById('soundBtn');
+        const soundIcon = document.getElementById('soundIcon');
+        const soundLabel = document.getElementById('soundLabel');
+        const song = document.getElementById('song');
+
+        let audioCtx = null;
+        let ambientOn = false;
+        let ambientMaster = null;
+        let ytPlayer = null;
+        let ytFailed = false;
+        let localReady = false;
+        let localFailed = false;
+        let soundOn = false;
+
+        const SOURCES = ['cancion/cancion.mp3', 'cancion/cancion.wav', 'music.mp3', 'music.wav'];
+        let srcIdx = 0;
+
+        song.loop = true;
+        song.muted = true;
+        song.preload = 'auto';
+
+        function loadSong() {
+            if (srcIdx >= SOURCES.length) {
+                localFailed = true;
+                refreshPill();
+                return;
+            }
+            song.src = SOURCES[srcIdx++];
+            song.load();
+            song.play().then(() => { localReady = true; refreshPill(); }).catch(() => {});
+        }
+
+        song.addEventListener('canplaythrough', () => { localReady = true; refreshPill(); });
+        song.addEventListener('error', () => { loadSong(); });
+
+        function playLocal() {
+            if (localFailed) return Promise.resolve(false);
+            try {
+                song.muted = false;
+                song.volume = 0.5;
+                return song.play().then(() => true).catch(() => { localFailed = true; refreshPill(); return false; });
+            } catch (e) {
+                localFailed = true;
+                refreshPill();
+                return Promise.resolve(false);
+            }
+        }
+
+        function showVideo(show) {
+            document.getElementById('ytFrame').classList.toggle('active', !!show);
+        }
+
+        function playYt() {
+            song.muted = true;
+            try {
+                ytPlayer.unMute();
+                ytPlayer.setVolume(45);
+                ytPlayer.playVideo();
+                showVideo(true);
+            } catch (e) {}
+        }
+
+        function startAmbient() {
+            if (ambientOn) return;
+            ambientOn = true;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioCtx.resume();
+
+            ambientMaster = audioCtx.createGain();
+            ambientMaster.gain.value = 0.0001;
+            ambientMaster.gain.exponentialRampToValueAtTime(0.09, audioCtx.currentTime + 1.5);
+            ambientMaster.connect(audioCtx.destination);
+
+            const delay = audioCtx.createDelay(1.2);
+            delay.delayTime.value = 0.52;
+            const fb = audioCtx.createGain();
+            fb.gain.value = 0.38;
+            const wet = audioCtx.createGain();
+            wet.gain.value = 0.3;
+            delay.connect(fb);
+            fb.connect(delay);
+            delay.connect(wet);
+            wet.connect(ambientMaster);
+
+            const filt = audioCtx.createBiquadFilter();
+            filt.type = 'lowpass';
+            filt.frequency.value = 380;
+            filt.Q.value = 3;
+            filt.connect(ambientMaster);
+            filt.connect(delay);
+
+            const droneGain = audioCtx.createGain();
+            droneGain.gain.value = 0.05;
+            droneGain.connect(filt);
+            const drone1 = audioCtx.createOscillator();
+            drone1.type = 'sine';
+            drone1.frequency.value = 55;
+            const drone2 = audioCtx.createOscillator();
+            drone2.type = 'sine';
+            drone2.frequency.value = 82.41;
+            const lfo = audioCtx.createOscillator();
+            lfo.frequency.value = 0.06;
+            const lfoG = audioCtx.createGain();
+            lfoG.gain.value = 90;
+            lfo.connect(lfoG);
+            lfoG.connect(filt.frequency);
+            drone1.connect(droneGain);
+            drone2.connect(droneGain);
+            drone1.start();
+            drone2.start();
+            lfo.start();
+
+            const scale = [220, 261.63, 329.63, 293.66, 246.94, 329.63, 196, 261.63];
+            let step = 0;
+            setInterval(() => {
+                const t = audioCtx.currentTime + 0.03;
+                const note = audioCtx.createOscillator();
+                note.type = 'sine';
+                note.frequency.value = scale[step % scale.length];
+                const ng = audioCtx.createGain();
+                ng.gain.setValueAtTime(0.0001, t);
+                ng.gain.exponentialRampToValueAtTime(0.045, t + 0.04);
+                ng.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+                note.connect(ng);
+                ng.connect(filt);
+                ng.connect(delay);
+                note.start(t);
+                note.stop(t + 1.2);
+                step++;
+            }, 950);
+            refreshPill();
+        }
+
+        function setAmbientVolume(target) {
+            if (!ambientMaster || !audioCtx) return;
+            const now = audioCtx.currentTime;
+            ambientMaster.gain.cancelScheduledValues(now);
+            ambientMaster.gain.setValueAtTime(ambientMaster.gain.value, now);
+            ambientMaster.gain.linearRampToValueAtTime(target, now + 0.3);
+        }
+
+        function stopAll() {
+            song.muted = true;
+            if (ytPlayer && ytPlayer.getVolume) {
+                try { ytPlayer.mute(); } catch (e) {}
+            }
+            if (audioCtx) setAmbientVolume(0.0001);
+            showVideo(false);
+        }
+
+        soundBtn.addEventListener('click', async () => {
+            soundOn = !soundOn;
+            if (soundOn) {
+                if (ytPlayer && !ytFailed) {
+                    playYt();
+                } else {
+                    const ok = await playLocal();
+                    if (!ok) {
+                        if (!ambientOn) startAmbient();
+                        audioCtx.resume();
+                        setAmbientVolume(0.09);
+                    }
+                }
+            } else {
+                stopAll();
+            }
+            refreshPill();
+        });
+
+        function refreshPill() {
+            let on = false;
+            let txt;
+            let src;
+            if (ytPlayer && !ytFailed) src = 'yt';
+            else if (!localFailed) src = 'local';
+            else src = 'ambient';
+            if (src === 'ambient') {
+                on = !!ambientOn && audioCtx && audioCtx.state === 'running';
+            } else {
+                on = soundOn;
+            }
+            if (src === 'yt') txt = on ? 'AUDIO ON · video' : 'tap para sonido (video)';
+            else if (src === 'local') txt = localReady ? (on ? 'AUDIO ON' : 'tap para sonido') : 'cargando audio local...';
+            else txt = on ? 'AUDIO ON' : 'tap para sonido';
+            soundIcon.textContent = on ? '\u266A' : '\u00B7\u266A\u00B7';
+            soundLabel.textContent = txt;
+            soundBtn.classList.toggle('on', on);
+        }
+
+        function makePlayer() {
+            try {
+                ytPlayer = new YT.Player('yt-player', {
+                    videoId: 'dQw4w9WgXcQ',
+                    width: '100%',
+                    height: '100%',
+                    playerVars: {
+                        autoplay: 1,
+                        mute: 1,
+                        loop: 1,
+                        playlist: 'dQw4w9WgXcQ',
+                        controls: 0,
+                        disablekb: 1,
+                        fs: 0,
+                        rel: 0,
+                        playsinline: 1
+                    },
+                    events: {
+                        onReady: (e) => {
+                            e.target.mute();
+                            e.target.setVolume(45);
+                            e.target.playVideo();
+                            if (soundOn) {
+                                try { e.target.unMute(); } catch (err) {}
+                                song.muted = true;
+                                showVideo(true);
+                            }
+                            refreshPill();
+                        },
+                        onError: () => {
+                            ytFailed = true;
+                            refreshPill();
+                        },
+                        onStateChange: (e) => {
+                            if (e.data === 1 || e.data === 3) {
+                                try {
+                                    if (soundOn) e.target.unMute();
+                                    else e.target.mute();
+                                    e.target.setVolume(45);
+                                } catch (err) {}
+                            }
+                            refreshPill();
+                        }
+                    }
+                });
+            } catch (err) {
+                ytFailed = true;
+                refreshPill();
+            }
+        }
+
+        function tryAutoplay() {
+            let tries = 0;
+            const iv = setInterval(() => {
+                if (window.YT && YT.Player) {
+                    clearInterval(iv);
+                    makePlayer();
+                    return;
+                }
+                if (++tries >= 60) {
+                    clearInterval(iv);
+                    ytFailed = true;
+                    refreshPill();
+                }
+            }, 200);
+        }
+
+        loadSong();
+        tryAutoplay();
+        refreshPill();
+    </script>
+</body>
+</html>
